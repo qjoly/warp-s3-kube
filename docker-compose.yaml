@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    image: ghcr.io/qjoly/warp-s3-kube:latest
+    environment:
+      - WARP_HOST=minio
+      - WARP_ACCESS_KEY=access_key
+      - WARP_SECRET_KEY=secret_key
+      - WARP_TLS=true
+      - BENCH_MODE="mixed"
+      - DURATION=10s
+      # - EXTRA_ARGS="--bucket kube-put"
