@@ -23,6 +23,7 @@ spec:
     - name: EXTRA_ARGS
       value: "--bucket kube-put"
     # command: ["/bin/sh", "-c", "sleep infinity"] # If you want to run it manually by exec
+    restartPolicy: Never
     resources:
       limits:
         cpu: "500m"
