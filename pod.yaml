@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
   - name: warp
-    image: ghcr.io/qjoly/warp-bench:0.9.0
+    image: ghcr.io/qjoly/warp-bench:0.0.2
     env:
     - name: WARP_HOST
       value: "minio"
@@ -30,6 +30,7 @@ spec:
       requests:
         cpu: "500m"
         memory: "128Mi"
+    restartPolicy: Never
     securityContext:
       allowPrivilegeEscalation: false
       runAsNonRoot: false
