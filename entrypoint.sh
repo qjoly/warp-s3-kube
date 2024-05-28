@@ -13,4 +13,12 @@ fi
 echo "Running benchmark test..."
 warp ${BENCH_MODE} --duration=${DURATION} $EXTRA_ARGS
 
-exit 0
+RESULT=$?
+
+if [ $KEEP_ALIVE_AFTER_TEST = "false" ]; then
+    echo "Test completed. Exiting..."
+    exit $RESULT
+else 
+    echo "Test completed. Keeping container alive since KEEP_ALIVE_AFTER_TEST is set to true."
+    while true; do sleep 1000; done
+fi

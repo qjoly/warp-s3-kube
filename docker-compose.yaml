@@ -10,3 +10,4 @@ services:
       - BENCH_MODE="mixed"
       - DURATION=10s
       # - EXTRA_ARGS="--bucket kube-put"
+      - KEEP_ALIVE_AFTER_TEST=true
