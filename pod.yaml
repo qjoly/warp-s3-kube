@@ -31,7 +31,6 @@ spec:
       requests:
         cpu: "500m"
         memory: "128Mi"
-    restartPolicy: Never
     securityContext:
       allowPrivilegeEscalation: false
       runAsNonRoot: false
