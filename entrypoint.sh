@@ -11,6 +11,7 @@ if [[ -z "$WARP_HOST" || -z "$WARP_ACCESS_KEY" || -z "$BENCH_MODE" || -z "$DURAT
 fi
 
 echo "Running benchmark test..."
+echo "warp ${BENCH_MODE} --duration=${DURATION} $EXTRA_ARGS"
 warp ${BENCH_MODE} --duration=${DURATION} $EXTRA_ARGS
 
 RESULT=$?

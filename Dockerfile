@@ -17,6 +17,8 @@ COPY --from=builder /go/src/github.com/minio/warp/warp /usr/local/bin/warp
 
 WORKDIR /app
 
+ENV KEEP_ALIVE_AFTER_TEST=false
+
 COPY ./entrypoint.sh /app/entrypoint.sh
 
 RUN chmod +x /app/entrypoint.sh

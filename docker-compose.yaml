@@ -3,11 +3,11 @@ services:
     build: .
     image: ghcr.io/qjoly/warp-s3-kube:latest
     environment:
-      - WARP_HOST=minio
-      - WARP_ACCESS_KEY=access_key
-      - WARP_SECRET_KEY=secret_key
-      - WARP_TLS=true
-      - BENCH_MODE="mixed"
-      - DURATION=10s
+      - "WARP_HOST=host"
+      - WARP_ACCESS_KEY=admin
+      - WARP_SECRET_KEY=password
+      - WARP_TLS=false
+      - BENCH_MODE=mixed
+      - DURATION=5m
       # - EXTRA_ARGS="--bucket kube-put"
-      - KEEP_ALIVE_AFTER_TEST=true
+      - KEEP_ALIVE_AFTER_TEST=false

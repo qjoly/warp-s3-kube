@@ -22,6 +22,8 @@ spec:
       value: 1m
     - name: EXTRA_ARGS
       value: "--bucket kube-put"
+    - name: KEEP_ALIVE_AFTER_TEST
+      value: "true"
     # command: ["/bin/sh", "-c", "sleep infinity"] # If you want to run it manually by exec
     restartPolicy: Never
     resources:
