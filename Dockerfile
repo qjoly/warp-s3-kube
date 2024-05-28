@@ -1,4 +1,4 @@
-FROM golang:1.19 as builder
+FROM golang:1.22 as builder
 
 ENV WARP_VERSION=0.9.0
 
