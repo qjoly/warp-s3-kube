@@ -1,12 +1,13 @@
 services:
   app:
     build: .
-    image: ghcr.io/qjoly/warp-s3-kube:latest
+    image: ghcr.io/qjoly/warp-s3-kube:v0.0.4
     environment:
       - "WARP_HOST=host"
       - WARP_ACCESS_KEY=admin
       - WARP_SECRET_KEY=password
       - WARP_TLS=false
+      - WARP_BUCKET=samplebucket
       - BENCH_MODE=mixed
       - DURATION=5m
       # - EXTRA_ARGS="--bucket kube-put"

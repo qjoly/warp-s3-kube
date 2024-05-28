@@ -10,9 +10,14 @@ if [[ -z "$WARP_HOST" || -z "$WARP_ACCESS_KEY" || -z "$BENCH_MODE" || -z "$DURAT
     exit 1
 fi
 
+# if WARP_BUCKET is undefined, set it to default value
+if [[ -z "$WARP_BUCKET" ]]; then
+    WARP_BUCKET="warp-benchmark-bucket"
+fi
+
 echo "Running benchmark test..."
-echo "warp ${BENCH_MODE} --duration=${DURATION} $EXTRA_ARGS"
-warp ${BENCH_MODE} --duration=${DURATION} $EXTRA_ARGS
+echo "warp ${BENCH_MODE} --duration=${DURATION} $EXTRA_ARGS --bucket=${WARP_BUCKET}"
+warp ${BENCH_MODE} --duration=${DURATION} $EXTRA_ARGS --bucket=${WARP_BUCKET}
 
 RESULT=$?
 
