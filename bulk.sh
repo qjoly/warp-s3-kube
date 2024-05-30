@@ -6,8 +6,8 @@ for i in 1k 90k 1m 10m 100m; do
   echo "------------------------------------------------------------"
   OBJECT_SIZE=$i
   echo "Running test with ${CONCURRENT} concurrent connections and ${OBJECT_SIZE} object size"
-  echo "warp ${BENCH_MODE} --duration=${DURATION} $EXTRA_ARGS --bucket=${WARP_BUCKET} --obj.size=${OBJECT_SIZE} --concurrent=${CONCURRENT}"
-  warp ${BENCH_MODE} --duration=${DURATION} $EXTRA_ARGS --bucket=${WARP_BUCKET} --obj.size=${OBJECT_SIZE} --concurrent=${CONCURRENT}
+  echo "warp ${BENCH_MODE} --duration=${DURATION} --bucket=${WARP_BUCKET} --obj.size=${OBJECT_SIZE} --concurrent=${CONCURRENT}"
+  warp ${BENCH_MODE} --duration=${DURATION} --bucket=${WARP_BUCKET} --obj.size=${OBJECT_SIZE} --concurrent=${CONCURRENT}
 done
 
 if [ $KEEP_ALIVE_AFTER_TEST = "false" ]; then
