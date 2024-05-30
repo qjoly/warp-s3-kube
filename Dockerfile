@@ -17,11 +17,13 @@ COPY --from=builder /go/src/github.com/minio/warp/warp /usr/local/bin/warp
 
 WORKDIR /app
 
-ENV KEEP_ALIVE_AFTER_TEST=false
+ENV KEEP_ALIVE_AFTER_TEST=true
 
 COPY ./entrypoint.sh /app/entrypoint.sh
+COPY ./bulk.sh /app/bulk.sh
 
-RUN chmod +x /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh && \
+    chmod +x /app/bulk.sh
 
 CMD ["/app/entrypoint.sh"]
 
