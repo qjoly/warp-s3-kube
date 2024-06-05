@@ -2,7 +2,7 @@
 
 CONCURRENT=32
 
-for i in 1k 90k 1m 10m 100m; do
+for i in 1k 90k 200k 1m 100m; do
   echo "------------------------------------------------------------"
   OBJECT_SIZE=$i
   echo "Running test with ${CONCURRENT} concurrent connections and ${OBJECT_SIZE} object size"
