@@ -1,6 +1,9 @@
 #!/bin/bash
 
-CONCURRENT=32
+# if concurrent does not exists, use 16 as default
+if [ -z "$CONCURRENT" ]; then
+  CONCURRENT=16
+fi
 
 for i in 1k 90k 200k 1m 100m; do
   echo "------------------------------------------------------------"
