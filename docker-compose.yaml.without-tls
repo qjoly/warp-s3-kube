@@ -1,14 +1,16 @@
 services:
   app:
     build: .
-    image: ghcr.io/qjoly/warp-s3-kube:v0.0.4
+    image: ghcr.io/qjoly/warp-s3-kube:v0.0.5
     environment:
       - "WARP_HOST=host"
       - WARP_ACCESS_KEY=admin
       - WARP_SECRET_KEY=password
       - WARP_TLS=false
-      - WARP_BUCKET=samplebucket
+      - WARP_BUCKET=bench3az
       - BENCH_MODE=mixed
       - DURATION=5m
-      # - EXTRA_ARGS="--bucket kube-put"
+      - EXTRA_ARGS=--analyze.out=out/warp-s3-kube.csv
       - KEEP_ALIVE_AFTER_TEST=false
+    volumes:
+      - ./output:/app/out
