@@ -6,7 +6,8 @@ services:
       - "WARP_HOST=host"
       - WARP_ACCESS_KEY=admin
       - WARP_SECRET_KEY=password
-      - WARP_TLS=false
+      - WARP_TLS=true
+      # - WARP_TLS=false
       - WARP_BUCKET=bench3az
       - BENCH_MODE=mixed
       - DURATION=5m

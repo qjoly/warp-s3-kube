@@ -34,10 +34,7 @@ services:
       - ./output:/app/out
 ```
 
-You can use example files given in this repo:
-
-* docker-compose.yaml.with-tls
-* docker-compose.yaml.without-tls
+You can use example file given in this repo `docker-compose.yaml.example`
 
 Build the image locally
 
