@@ -108,7 +108,7 @@ kubectl create configmap warp-config \
   --from-literal=WARP_ACCESS_KEY=access_key \
   --from-literal=WARP_TLS=true \
   --from-literal=BENCH_MODE=mixed \
-  --from-literal=DURATION=1m \
+  --from-literal=DURATION=5m \
   --from-literal=EXTRA_ARGS=--analyze.out=out/warp-s3-kube.csv
 ```
 
