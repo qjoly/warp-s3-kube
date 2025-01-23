@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: warp-pvc
+  namespace: minio-warp
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: warp-bench-job
+spec:
+  template:
+    metadata:
+      name: warp-bench
+    spec:
+      containers:
+      - name: warp
+        image: ghcr.io/qjoly/warp-bench:0.2.0
+        env:
+        - name: WARP_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: warp-config
+              key: WARP_HOST
+        - name: WARP_ACCESS_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: warp-config
+              key: WARP_ACCESS_KEY
+        - name: WARP_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: warp-config
+              key: WARP_BUCKET
+        - name: WARP_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: warp-secret
+              key: WARP_SECRET_KEY
+        - name: WARP_TLS
+          valueFrom:
+            configMapKeyRef:
+              name: warp-config
+              key: WARP_TLS
+        - name: BENCH_MODE
+          valueFrom:
+            configMapKeyRef:
+              name: warp-config
+              key: BENCH_MODE
+        - name: DURATION
+          valueFrom:
+            configMapKeyRef:
+              name: warp-config
+              key: DURATION
+        - name: EXTRA_ARGS
+          valueFrom:
+            configMapKeyRef:
+              name: warp-config
+              key: EXTRA_ARGS
+        - name: KEEP_ALIVE_AFTER_TEST
+          value: "false"
+        resources:
+          limits:
+            memory: "512Mi"
+          requests:
+            cpu: "1"
+            memory: "128Mi"
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: false
+          capabilities:
+            drop:
+            - ALL
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - mountPath: /app/out
+          name: warp-output
+      restartPolicy: Never
+      volumes:
+      - name: warp-output
+        persistentVolumeClaim:
+          claimName: warp-pvc
+  backoffLimit: 1

@@ -29,7 +29,6 @@ services:
       - BENCH_MODE=mixed
       - DURATION=5m
       - EXTRA_ARGS=--analyze.out=out/warp-s3-kube.csv
-      - KEEP_ALIVE_AFTER_TEST=false
     volumes:
       - ./output:/app/out
 ```
@@ -83,9 +82,61 @@ app-1 exited with code 0
 
 CSV file of the bench can be found in the `./output/` directory
 
-## TODO How to run on Kubernetes 
+## How to run on Kubernetes 
 
-TODO
+To deploy it in Kubernetes, you can also use either the pod of job definition files given in this repo:
+
+* the pod will contain the ready to use bench image, where you can launch your tests manually
+* the job will run the bench once and exit
+
+Both manifests rely on the fact that env vars are pre-provisioned in existing ConfigMap / Secret.
+
+### Prerequisites: create the ConfigMap and Secret
+
+**Namespace**
+
+```bash
+kubectl create ns minio-warp
+```
+
+**ConfigMap**
+
+```bash
+kubectl create configmap warp-config \
+  --namespace=minio-warp \
+  --from-literal=WARP_HOST=s3HostFqdnWithoutScheme \
+  --from-literal=WARP_ACCESS_KEY=access_key \
+  --from-literal=WARP_TLS=true \
+  --from-literal=BENCH_MODE=mixed \
+  --from-literal=DURATION=5m \
+  --from-literal=EXTRA_ARGS=--analyze.out=out/warp-s3-kube.csv
+```
+
+**Secret**
+
+```bash
+kubectl create secret generic warp-secret \
+  --namespace=minio-warp \
+  --from-literal=WARP_SECRET_KEY=secret_key
+```
+
+### As a Pod
+
+Apply the manifest
+
+```bash
+kubectl -n minio-warp apply -f kubernetes/pod.yaml
+```
+
+Then, open a shell in it and lauch then entrypoint script
+
+```bash
+root@warp-bench-manual:/app# ls
+entrypoint.sh  out
+root@warp-bench-manual:/app# ./entrypoint.sh 
+```
+
+### As a Job
 
 ## Contributions
 
