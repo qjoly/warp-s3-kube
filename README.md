@@ -39,13 +39,13 @@ You can use example file given in this repo `docker-compose-example.yaml`
 Build the image locally
 
 ```bash
-% docker compose build
+% docker compose build -f docker-compose-dev.yaml
 ```
 
-Run the image
+Run the image (don't forget to edit environment variables):
 
 ```bash
-% docker compose up
+% docker compose up -f docker-compose-dev.yaml
 
 [+] Running 1/0
  ✔ Container warp-s3-kube-app-1  Created                                                                                                                                                                                                   0.0s 
