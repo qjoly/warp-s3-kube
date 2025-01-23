@@ -1,6 +1,6 @@
 services:
   app:
-    build: .
+    # build: .
     image: ghcr.io/qjoly/warp-s3-kube:v0.0.5
     environment:
       - "WARP_HOST=host"
