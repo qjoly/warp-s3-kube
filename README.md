@@ -29,7 +29,6 @@ services:
       - BENCH_MODE=mixed
       - DURATION=5m
       - EXTRA_ARGS=--analyze.out=out/warp-s3-kube.csv
-      - KEEP_ALIVE_AFTER_TEST=false
     volumes:
       - ./output:/app/out
 ```

@@ -52,7 +52,7 @@ spec:
               name: warp-config
               key: EXTRA_ARGS
         - name: KEEP_ALIVE_AFTER_TEST
-          value: "true"
+          value: "false"
         resources:
           limits:
             cpu: "500m"
