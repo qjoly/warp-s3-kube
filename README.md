@@ -18,7 +18,7 @@
 ```yaml
 services:
   app:
-    build: .
+    # build: .
     image: ghcr.io/qjoly/warp-s3-kube:v0.0.5
     environment:
       - "WARP_HOST=host"
@@ -34,7 +34,7 @@ services:
       - ./output:/app/out
 ```
 
-You can use example file given in this repo `docker-compose.yaml.example`
+You can use example file given in this repo `docker-compose-example.yaml`
 
 Build the image locally
 
