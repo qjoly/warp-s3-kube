@@ -1,3 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: warp-pvc
+  namespace: minio-warp
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -67,5 +79,12 @@ spec:
             - ALL
           seccompProfile:
             type: RuntimeDefault
+        volumeMounts:
+        - mountPath: /app/out
+          name: warp-output
       restartPolicy: Never
+      volumes:
+      - name: warp-output
+        persistentVolumeClaim:
+          claimName: warp-pvc
   backoffLimit: 1
