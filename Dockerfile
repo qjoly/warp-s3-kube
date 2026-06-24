@@ -11,7 +11,7 @@ ENV CGO_ENABLED=0
 
 RUN go build -ldflags '-w -s' -a -o warp .
 
-FROM debian:bookworm-20250113
+FROM debian:bookworm-20260623
 
 COPY --from=builder /go/src/github.com/minio/warp/warp /usr/local/bin/warp
 
